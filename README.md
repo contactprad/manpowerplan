@@ -12,3 +12,9 @@
 11. run "npm install"
 12. run "yarn start"
 13. Browser should open with homepage
+
+#Development
+#Server
+Shortly.js, /app/LPU-Solver are files to touch
+#Client
+LPUView.js, App.js are files to touch
