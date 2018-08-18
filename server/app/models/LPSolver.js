@@ -1,7 +1,8 @@
 var solver = require("javascript-lp-solver/src/main")
 
 var LPSolver = function(model) {
-    return solver.Solve(this.model);
+    console.log(model);
+    return solver.Solve(model);
 }
 
 /*class LPSolver {

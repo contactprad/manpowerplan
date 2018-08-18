@@ -57,6 +57,5 @@ model = {
   }
 }
 
-console.log(solver.
 results = solver.MultiObjective(model)
 console.log(results)

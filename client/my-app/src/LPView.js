@@ -10,10 +10,10 @@ class LPView extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      phone: '',
-      profile: '',
       name: '',
-      email: ''
+      optimal: '',
+      brit: '',
+      yank:''
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -28,37 +28,55 @@ class LPView extends Component {
   }
 
   handleSubmit(event) {
+    var that = this;
     event.preventDefault();
     const target = event.target;
 
-    let sendPayload = this.state.name;
-    var options = {
-      url: 'http://localhost:8081/manpowerplan/findoptimal',
-      headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*'},
-      body: sendPayload
-    };
-    request.post(options, (err, data) => {
-        if(err){
-          alert("OOps! something went wrong!");
-        console.log(err);
-      }
-        else {
-        console.log(data);
-      alert("Thanks for Submitting the details! We will contact you shortly");
-      }
+    let sendPayload = {}
+    sendPayload.item = this.state.name;
+    console.log(sendPayload)
+      var request = require("request");
+
+      var options = {
+        method: 'POST',
+        url: 'http://127.0.0.1:8081/manpowerplan/findoptimal',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: sendPayload,
+        json: true
+      };
+
+      request(options, function (error, response, body) {
+        if (error) throw new Error(error);
+        console.log(body.result);
+        that.setState({optimal: body.result});
+        that.setState({brit: body.brit});
+        that.setState({yank: body.yank});
       });
+
   }
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit} >
+      <div>
+      <form onSubmit={this.handleSubmit}>
         <label>
           Input You JSON Parameters(*)
           <textarea name="name" value={this.state.name}
             onChange={this.handleChange} />
         </label>
         <input type="submit" value="Calculate Optimal Value" />
+        <br />
+        <label> Optimal Cost is: {this.state.optimal}</label>
+        <br/>
+        <label> Number of Regular Software Engineers Required are: {this.state.brit}</label>
+        <br/>
+        <label> Number of Contingent Software Engineers Required are: {this.state.yank}</label>
       </form>
+      <div>
+      </div>
+      </div>
     );
   }
 }
