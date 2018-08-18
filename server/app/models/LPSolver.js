@@ -1,4 +1,4 @@
-var solver = require("javascript-lp-solver/src/main")
+var solver = require("javascript-lp-solver/src/solver")
 
 var LPSolver = function(model) {
     console.log(model);
