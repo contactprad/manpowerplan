@@ -5,6 +5,8 @@ import logo from './img/logoman1.png'
 import './App.css';
 import { Container, Row, Col } from 'react-grid-system';
 import LPView from './LPView';
+import LPViewFull from './LPViewFull';
+
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -26,8 +28,9 @@ class App extends React.Component {
         <br /><br />
           <Row>
             <Col>
-            <LPView />
+            <LPViewFull />
             </Col>
+            
           </Row>
         </Container>
     )

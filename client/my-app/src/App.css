@@ -4,7 +4,7 @@
 
 .App-logo {
   height: 100%;
-  width: 30%;
+  width: 15%;
 }
 
 .App-header {
@@ -63,7 +63,7 @@ h1 {
 label {
   display: inline-block;
   margin-bottom: .5rem;
-  font-size: 1.5rem;
+  font-size: 1rem;
   text-transform: uppercase;
   -ms-touch-action: manipulation;
   touch-action: manipulation;
@@ -72,7 +72,7 @@ label {
 input {
   display: block;
   padding: .5rem .75rem;
-  width: 100%;
+  width: 55%;
   font-size: 2rem;
   line-height: 1.25;
   color: #55595c;
@@ -148,4 +148,20 @@ textarea {
 .btn:focus {
   outline: 0;
 }
+
+/* Create two equal columns that floats next to each other */
+.column {
+  float: right;
+  width: 50%;
+  padding: 10px;
+  height: 300px; /* Should be removed. Only for demonstration */
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+.rowC{display:flex; flex-direction:row;}
 
