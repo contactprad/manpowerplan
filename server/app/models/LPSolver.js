@@ -1,8 +1,8 @@
 var solver = require("javascript-lp-solver/src/main")
 
 var LPSolver = function(model) {
-  let my_arr = createArray(model)
-    model = solver.ReformatLP(my_arr)
+  //let my_arr = createArray(model)
+    model = solver.ReformatLP(model)
     return solver.Solve(model);
 }
 

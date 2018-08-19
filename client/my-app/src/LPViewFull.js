@@ -7,24 +7,27 @@ import { Container } from 'react-grid-system';
   const formStyle = {
     align: "top"
   };
-  
-  
+
+
     class LPViewFull extends Component {
       constructor(props) {
         super(props);
         this.state = {
-          q1constraint: '',
-          q2constraint: '',
-          q3constraint: '',
-          q4constraint:'',
-          q1temptotal:'',
-          q2temptotal:'',
-          q3tempttotal:'',
-          q4temptotal:'',
-          salconse:'',
-          salconsse:'',
-          salregse:'',
-          salregsse:'',
+          q1constraint: '1000',
+          q2constraint: '1000',
+          q3constraint: '1000',
+          q4constraint:'1000',
+          q1temptotal:'0.2',
+          q2temptotal:'0.2',
+          q3temptotal:'0.2',
+          q4temptotal:'0.2',
+          salconse:'24000',
+          salconsse:'43200',
+          salregse: '80000',
+          salregsse:'144000',
+          delta1cons:'100',
+          delta2cons: '100',
+          delta3cons: '100',
           x1:'',
           x2:'',
           a1:'',
@@ -38,30 +41,46 @@ import { Container } from 'react-grid-system';
           delta1:'',
           delta2:'',
           delta3:'',
+          optimal:''
         };
-    
+
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
       }
-    
-  
+
+
     handleChange(event) {
       const target = event.target;
       this.setState({
         [target.name]: target.value,
       });
     }
-  
+
     handleSubmit(event) {
       var that = this;
       event.preventDefault();
       const target = event.target;
-  
+
       let sendPayload = {}
-      sendPayload.item = this.state.name;
+      sendPayload.q1constraint = this.state.q1constraint;
+      sendPayload.q2constraint = this.state.q1constraint;
+      sendPayload.q3constraint = this.state.q1constraint;
+      sendPayload.q4constraint = this.state.q1constraint;
+      sendPayload.q1temptotal = this.state.q1temptotal;
+      sendPayload.q2temptotal = this.state.q2temptotal;
+      sendPayload.q3temptotal = this.state.q3temptotal;
+      sendPayload.q4temptotal = this.state.q4temptotal;
+      sendPayload.salconse = this.state.salconse;
+      sendPayload.salconsse = this.state.salconsse;
+      sendPayload.salregse = this.state.salregse;
+      sendPayload.salregsse = this.state.salregsse;
+      sendPayload.delta1cons = this.state.delta1cons;
+      sendPayload.delta2cons = this.state.delta2cons;
+      sendPayload.delta3cons = this.state.delta3cons;
+
       console.log(sendPayload)
         var request = require("request");
-  
+
         var options = {
           method: 'POST',
           url: 'http://127.0.0.1:8081/manpowerplan/findoptimal1',
@@ -71,29 +90,27 @@ import { Container } from 'react-grid-system';
           body: sendPayload,
           json: true
         };
-  
+
         request(options, function (error, response, body) {
           if (error) throw new Error(error);
           console.log(body.result);
           that.setState({optimal: body.result});
-          that.setState({q1constraint: body.q1constraint});
-          that.setState({q2constraint: body.q2constraint});
-          that.setState({q2constraint: body.q3constraint});
-          that.setState({q2constraint: body.q4constraint});
-          that.setState({q1temptotal: body.q1temptotal});
-          that.setState({q2temptotal: body.q2temptotal});
-          that.setState({q3tempttotal: body.q3tempttotal});
-          that.setState({q4temptotal: body.q4temptotal});
-          that.setState({salconse: body.salconse});
-          that.setState({salconsse: body.salconsse});
-          that.setState({salregse: body.salregse});
-          that.setState({salregsse: body.salregsse});
-          that.setState({delta1: body.delta1});
-          that.setState({delta2: body.delta2});
-          that.setState({delta3: body.delta3});
-          
+          that.setState({x1: body.x1});
+          that.setState({y1: body.y1});
+          that.setState({a1: body.a1});
+          that.setState({a2: body.a2});
+          that.setState({a3: body.a3});
+          that.setState({a4: body.a4});
+          that.setState({b1: body.b1});
+          that.setState({b2: body.b2});
+          that.setState({b3: body.b3});
+          that.setState({b4: body.b4});
+          that.setState({delta1: body.d1});
+          that.setState({delta2: body.d2});
+          that.setState({delta3: body.d3});
+
         });
-  
+
     }
     //
   render() {
@@ -105,15 +122,15 @@ import { Container } from 'react-grid-system';
           <input  name = "q1constraint" value={this.state.q1constraint}  onChange={this.handleChange}/>
           </label>
 
-          <label> Q2 Target: 
+          <label> Q2 Target:
           <input name = "q2constraint" value={this.state.q2constraint} onChange={this.handleChange}/>
           </label>
           <br/>
-          
+
           <label>Q3 Target:
           <input name = "q3constraint" value={this.state.q3constraint} onChange={this.handleChange}/>
           </label>
-          
+
           <br/>
           <label>Q4 Target:
           <input name = "q4constraint" value={this.state.q4constraint} onChange={this.handleChange}/>
@@ -128,7 +145,7 @@ import { Container } from 'react-grid-system';
           </label>
           <br/>
           <label>Contigent proportion(Q3):
-          <input name = "q3tempotal" value={this.state.q3temptotal} onChange={this.handleChange}/>
+          <input name = "q3temptotal" value={this.state.q3temptotal} onChange={this.handleChange}/>
           </label>
           <br/>
           <label>Contigent proportion(Q4):
@@ -150,16 +167,28 @@ import { Container } from 'react-grid-system';
           <label>Salary for Contigent SE:
           <input name ="salconse" value={this.state.salconse} onChange={this.handleChange}/>
           </label>
+          <label>Delta Constraint (Q1):
+          <input name ="delta1cons" value={this.state.delta1cons} onChange={this.handleChange}/>
+          </label>
+          <label>Delta Constraint (Q1):
+          <input name ="delta2cons" value={this.state.delta2cons} onChange={this.handleChange}/>
+          </label>
+          <label>Delta Constraint (Q3):
+          <input name ="delta3cons" value={this.state.delta3cons} onChange={this.handleChange}/>
+          </label>
           <br/>
-          <input type="submit" value="Optimal Value" />
+          <input type="submit" value="Click Here" />
         </form></div>
-        <div>  
+        <div>
         <form onSubmit={this.handleSubmit}>
+        <label>Optimal Cost
+          <input name ="optimal" value={this.state.optimal} onChange={this.handleChange}/>
+          </label>
         <label>No. of Regular SE
           <input name ="x1" value={this.state.x1} onChange={this.handleChange}/>
           </label>
           <label>No. of Regular SSE
-            <input name = "y1" value={this.state.x2} onChange={this.handleChange}/>
+            <input name = "y1" value={this.state.y1} onChange={this.handleChange}/>
           </label>
           <label>No. of Contigent SE in Q1
           <input name = "a1" value={this.state.a1} onChange={this.handleChange}/>
@@ -200,4 +229,3 @@ import { Container } from 'react-grid-system';
     }
   }
    export default LPViewFull;
-  
