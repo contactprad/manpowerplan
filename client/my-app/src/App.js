@@ -1,7 +1,7 @@
 import React, {
   Component
 } from 'react';
-import logo from './img/logoman.png'
+import logo from './img/logoman1.png'
 import './App.css';
 import { Container, Row, Col } from 'react-grid-system';
 import LPView from './LPView';
@@ -21,7 +21,7 @@ class App extends React.Component {
     return (
         <Container>
           <Row>
-          <img src={logo} alt="logo" height="30%" width="30%" />
+          <img src={logo} alt="logo" height="30%" width="60%" />
         </Row>
         <br /><br />
           <Row>
