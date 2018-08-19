@@ -117,7 +117,8 @@ import { Container } from 'react-grid-system';
       return (
         <div class="rowC">
         <div>
-        <form onSubmit={this.handleSubmit}>
+          <h1> Please Input Values: </h1>
+        <form  onSubmit={this.handleSubmit}>
           <label> Q1 Target:
           <input  name = "q1constraint" value={this.state.q1constraint}  onChange={this.handleChange}/>
           </label>
@@ -170,7 +171,7 @@ import { Container } from 'react-grid-system';
           <label>Delta Constraint (Q1):
           <input name ="delta1cons" value={this.state.delta1cons} onChange={this.handleChange}/>
           </label>
-          <label>Delta Constraint (Q1):
+          <label>Delta Constraint (Q2):
           <input name ="delta2cons" value={this.state.delta2cons} onChange={this.handleChange}/>
           </label>
           <label>Delta Constraint (Q3):
@@ -180,48 +181,49 @@ import { Container } from 'react-grid-system';
           <input type="submit" value="Click Here" />
         </form></div>
         <div>
+          <h1> Optimal Values: </h1>
         <form onSubmit={this.handleSubmit}>
         <label>Optimal Cost
-          <input name ="optimal" value={this.state.optimal} onChange={this.handleChange}/>
+          <input name ="optimal" style={{backgroundColor: 'lightgrey'}} value={this.state.optimal} readOnly/>
           </label>
         <label>No. of Regular SE
-          <input name ="x1" value={this.state.x1} onChange={this.handleChange}/>
+          <input name ="x1" style={{backgroundColor: 'lightgrey'}} value={this.state.x1} readOnly/>
           </label>
           <label>No. of Regular SSE
-            <input name = "y1" value={this.state.y1} onChange={this.handleChange}/>
+            <input name = "y1" style={{backgroundColor: 'lightgrey'}} value={this.state.y1} readOnly/>
           </label>
           <label>No. of Contigent SE in Q1
-          <input name = "a1" value={this.state.a1} onChange={this.handleChange}/>
+          <input name = "a1" style={{backgroundColor: 'lightgrey'}} value={this.state.a1} readOnly/>
           </label>
           <label>No. of Contigent SE in Q2
-          <input name = "a2" value={this.state.a2} onChange={this.handleChange}/>
+          <input name = "a2" style={{backgroundColor: 'lightgrey'}} value={this.state.a2} readOnly/>
           </label>
           <label>No. of Contigent SE in Q3
-          <input name = "a3" value={this.state.a3} onChange={this.handleChange}/>
+          <input name = "a3" style={{backgroundColor: 'lightgrey'}} value={this.state.a3} readOnly/>
           </label>
           <label>No. of Contigent SE in Q4
-          <input name = "a4" value={this.state.a4} onChange={this.handleChange}/>
+          <input name = "a4" style={{backgroundColor: 'lightgrey'}} value={this.state.a4} readOnly />
           </label>
           <label>No. of Contigent SSE in Q1
-          <input name = "b1" value={this.state.b1} onChange={this.handleChange}/>
+          <input name = "b1" style={{backgroundColor: 'lightgrey'}} value={this.state.b1} readOnly/>
           </label>
           <label>No. of Contigent SSE in Q2
-          <input name = "b2" value={this.state.b2} onChange={this.handleChange}/>
+          <input name = "b2" style={{backgroundColor: 'lightgrey'}} value={this.state.b2} readOnly/>
           </label>
           <label>No. of Contigent SSE in Q3
-          <input name = "b3" value={this.state.b3} onChange={this.handleChange}/>
+          <input name = "b3" style={{backgroundColor: 'lightgrey'}} value={this.state.b3} readOnly/>
           </label>
           <label>No. of Contigent SSE in Q4
-          <input name = "b4" value={this.state.b4} onChange={this.handleChange}/>
+          <input name = "b4" style={{backgroundColor: 'lightgrey'}} value={this.state.b4} readOnly/>
           </label>
           <label>Delta1
-          <input name = "delta1" value={this.state.delta1} onChange={this.handleChange}/>
+          <input name = "delta1" style={{backgroundColor: 'lightgrey'}} value={this.state.delta1} readOnly/>
           </label>
           <label>Delta2
-          <input name = "delta2" value={this.state.delta2} onChange={this.handleChange}/>
+          <input name = "delta2" style={{backgroundColor: 'lightgrey'}} value={this.state.delta2} readOnly/>
           </label>
           <label>Delta3
-          <input name = "delta3" value={this.state.delta3} onChange={this.handleChange}/>
+          <input name = "delta3" style={{backgroundColor: 'lightgrey'}} value={this.state.delta3} readOnly/>
           </label>
         </form></div>
         </div>
