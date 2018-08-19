@@ -35,28 +35,11 @@ app.get('/error',
 
   app.post('/manpowerplan/findoptimal', (req,res) => {
     console.log("post: Calculate the optimal solutoin")
-    let body = JSON.parse(req.body.item);
-    console.log(body);
-    let data = {
-      feasible: true,
-      result: 1080000,
-      bounded: true,
-      brit: 24,
-      yank: 20
-    }
+    let body =  req.body.item
     let result = LPSolver(body);
-    console.log(result)
+    console.log("Response is", result);
     res.status(200).send(result);
 
   });
-
-app.get('/getstatus', (req, res) => {
-  console.log('get: last status from databse');
-  Status.fetchAll().then((results) => {
-    let data = results.toJSON();
-    res.status(200).send(data);
-  });
-  return res.status(400);
-});
 
 module.exports = server;

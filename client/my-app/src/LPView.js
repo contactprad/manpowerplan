@@ -33,8 +33,8 @@ class LPView extends Component {
     const target = event.target;
 
     let sendPayload = {}
-    sendPayload.item = this.state.name;
-    console.log(sendPayload)
+    sendPayload.item = target.name.value;
+    console.log(sendPayload);
       var request = require("request");
 
       var options = {
@@ -43,16 +43,17 @@ class LPView extends Component {
         headers: {
           'Content-Type': 'application/json'
         },
-        body: sendPayload,
-        json: true
+        body: JSON.stringify(sendPayload),
+        JSON:true
       };
 
       request(options, function (error, response, body) {
         if (error) throw new Error(error);
-        console.log(body.result);
-        that.setState({optimal: body.result});
-        that.setState({brit: body.brit});
-        that.setState({yank: body.yank});
+        console.log("result is", body);
+        let resp = JSON.parse(body)
+        that.setState({optimal: resp.result});
+        that.setState({brit: resp.x1});
+        that.setState({yank: resp.y1});
       });
 
   }
@@ -72,7 +73,7 @@ class LPView extends Component {
         <br/>
         <label> Number of Regular Software Engineers Required are: {this.state.brit}</label>
         <br/>
-        <label> Number of Contingent Software Engineers Required are: {this.state.yank}</label>
+        <label> Number of Regular Senior Software Engineers Required are: {this.state.yank}</label>
       </form>
       <div>
       </div>
