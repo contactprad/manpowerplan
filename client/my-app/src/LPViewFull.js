@@ -153,19 +153,19 @@ import { Container } from 'react-grid-system';
           <input name ="q4temptotal" value={this.state.q4temptotal} onChange={this.handleChange}/>
           </label>
           <br/>
-          <label>Salary for Regular SSE:
+          <label>Salary for Regular SSE (Annual):
           <input name = "salregsse" value={this.state.salregsse} onChange={this.handleChange}/>
           </label>
           <br/>
-          <label>Salary for Regular SE:
+          <label>Salary for Regular SE (Annual):
           <input name = "salregse" value={this.state.salregse} onChange={this.handleChange}/>
           </label>
           <br/>
-          <label>Salary for Contigent SSE :
+          <label>Salary for Contigent SSE (Quarterly) :
           <input name = "salconsse" value={this.state.salconsse} onChange={this.handleChange}/>
           </label>
           <br/>
-          <label>Salary for Contigent SE:
+          <label>Salary for Contigent SE (Quarterly):
           <input name ="salconse" value={this.state.salconse} onChange={this.handleChange}/>
           </label>
           <label>Delta Constraint (Q1):
@@ -178,7 +178,11 @@ import { Container } from 'react-grid-system';
           <input name ="delta3cons" value={this.state.delta3cons} onChange={this.handleChange}/>
           </label>
           <br/>
-          <input type="submit" value="Click Here" />
+          <input type="submit" value="Click Here" style={{backgroundColor: 'lightgrey', "border-radius": '12px'
+        , "box-shadow": "0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);"
+        }
+        }
+        />
         </form></div>
         <div>
           <h1> Optimal Values: </h1>
