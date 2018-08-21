@@ -60,10 +60,10 @@ var replaceArray = function(body) {
     "24 x1 + 24 a2 + 48 y1 + 48 b2 + d1 - d2 >= BBB2",
     "24 x1 + 24 a3 + 48 y1 + 48 b3 + d2 - d3 >= BBB3",
     "24 x1 + 24 a4 + 48 y1 + 48 b4 + d3 >= BBB4",
-    "0.8 a1 + 0.8 b1 - 0.2 x1 - 0.2 y1 >= 0",
-    "0.8 a2 + 0.8 b2 - 0.2 x1 - 0.2 y1 >= 0",
-    "0.8 a3 + 0.8 b3 - 0.2 x1 - 0.2 y1 >= 0",
-    "0.8 a4 + 0.8 b4 - 0.2 x1 - 0.2 y1 >= 0",
+    "EEE1 a1 + EEE1 b1 - EEE2 x1 - EEE2 y1 >= 0",
+    "EEE3 a2 + EEE3 b2 - EEE4 x1 - EEE4 y1 >= 0",
+    "EEE5 a3 + EEE5 b3 - EEE6 x1 - EEE6 y1 >= 0",
+    "EEE7 a4 + EEE7 b4 - EEE8 x1 - EEE8 y1 >= 0",
     "x1 >= 1",
     "y1 >= 1",
     "a1 >= 1",
@@ -110,14 +110,25 @@ var replaceArray = function(body) {
   finalEquation.push(fifthRow);
 
   //Add code here to manage the contraint
-  //let six = equation[5].replaceAll("CCC1", body.q1temptotal);
-  finalEquation.push(equation[5]);
-  //let seven = equation[6].replaceAll("CCC2", body.q2temptotal);
-  finalEquation.push(equation[6]);
-  //let eight = equation[7].replaceAll("CCC3", body.q3temptotal);
-  finalEquation.push(equation[7]);
-  //let nine = equation[8].replaceAll("CCC4", body.q4temptotal);
-  finalEquation.push(equation[8]);
+  let coeff1 = parseFloat(body.q1temptotal);
+  let coeff2 = 1 - coeff1;
+  let six = equation[5].replaceAll("EEE1", coeff2.toString()).replaceAll("EEE2", coeff1.toString());
+  finalEquation.push(six);
+
+  coeff1 = parseFloat(body.q2temptotal);
+  coeff2 = 1 - coeff1;
+  let seven = equation[6].replaceAll("EEE3", coeff2.toString()).replaceAll("EEE4", coeff1.toString());
+  finalEquation.push(seven);
+
+  coeff1 = parseFloat(body.q3temptotal);
+  coeff2 = 1 - coeff1;
+  let eight = equation[7].replaceAll("EEE5", coeff2.toString()).replaceAll("EEE6", coeff1.toString());
+  finalEquation.push(eight);
+
+  coeff1 = parseFloat(body.q4temptotal);
+  coeff2 = 1 - coeff1;
+  let nine = equation[8].replaceAll("EEE7", coeff2.toString()).replaceAll("EEE8", coeff1.toString());
+  finalEquation.push(nine);
 
   for(var i = 9; i<= 18; i++) {
     finalEquation.push(equation[i]);
