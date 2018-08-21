@@ -93,7 +93,7 @@ import { Container } from 'react-grid-system';
 
         request(options, function (error, response, body) {
           if (error) throw new Error(error);
-          console.log(body.result);
+          console.log(body);
           that.setState({optimal: body.result});
           that.setState({x1: body.x1});
           that.setState({y1: body.y1});

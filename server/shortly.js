@@ -47,6 +47,7 @@ app.get('/error',
       let body = req.body
       console.log(body);
       let finalEquation = replaceArray(body);
+      console.log("Final Equation is", finalEquation);
       let result = LPSolver(finalEquation);
       console.log("Response is", result);
       res.status(200).send(result);
@@ -54,15 +55,15 @@ app.get('/error',
     });
 
 var replaceArray = function(body) {
-  let equation = ["min: AAA1 x1  AAA2 y1 AAA3 a1 AAA3 a2 AAA3 a3 AAA3 a4 AAA4 b1 AAA4 b2 AAA4 b3 AAA4 b4",
-    "24 x1 +  24 a1 + 48 y1 + 48 b1 - d1 >= BBB1",
-    "24 x1  24 a2  48 y1  48 b2 + d1 - d2 >= BBB2",
-    "24 x1  24 a3  48 y1  48 b3 + d2 - d3 >= BBB3",
-    "24 x1  24 a4  48 y1  48 b4 + d3 >= BBB4",
-    "(a1 + b1) / (a1  b1  x1  y1) >= CCC1",
-    "(a2  b2) / (a2 b2 x1  y1) >= CCC2",
-    "(a3 b3) / (a3 b3 x1 y1) >= CCC3",
-    "(a4 b4) / (a4 b4 x1 y1) >= CCC4",
+  let equation = ["min: AAA1 x1 + AAA2 y1 + AAA3 a1 + AAA3 a2 + AAA3 a3 + AAA3 a4 + AAA4 b1 + AAA4 b2 + AAA4 b3 + AAA4 b4",
+    "24 x1 + 24 a1 + 48 y1 + 48 b1 - d1 >= BBB1",
+    "24 x1 + 24 a2 + 48 y1 + 48 b2 + d1 - d2 >= BBB2",
+    "24 x1 + 24 a3 + 48 y1 + 48 b3 + d2 - d3 >= BBB3",
+    "24 x1 + 24 a4 + 48 y1 + 48 b4 + d3 >= BBB4",
+    "0.8 a1 + 0.8 b1 - 0.2 x1 - 0.2 y1 >= 0",
+    "0.8 a2 + 0.8 b2 - 0.2 x1 - 0.2 y1 >= 0",
+    "0.8 a3 + 0.8 b3 - 0.2 x1 - 0.2 y1 >= 0",
+    "0.8 a4 + 0.8 b4 - 0.2 x1 - 0.2 y1 >= 0",
     "x1 >= 1",
     "y1 >= 1",
     "a1 >= 1",
@@ -108,14 +109,15 @@ var replaceArray = function(body) {
   let fifthRow = equation[4].replaceAll("BBB4", body.q4constraint);
   finalEquation.push(fifthRow);
 
-  let six = equation[5].replaceAll("CCC1", body.q1temptotal);
-  finalEquation.push(six);
-  let seven = equation[6].replaceAll("CCC2", body.q2temptotal);
-  finalEquation.push(seven);
-  let eight = equation[7].replaceAll("CCC3", body.q3temptotal);
-  finalEquation.push(eight);
-  let nine = equation[8].replaceAll("CCC4", body.q4temptotal);
-  finalEquation.push(nine);
+  //Add code here to manage the contraint
+  //let six = equation[5].replaceAll("CCC1", body.q1temptotal);
+  finalEquation.push(equation[5]);
+  //let seven = equation[6].replaceAll("CCC2", body.q2temptotal);
+  finalEquation.push(equation[6]);
+  //let eight = equation[7].replaceAll("CCC3", body.q3temptotal);
+  finalEquation.push(equation[7]);
+  //let nine = equation[8].replaceAll("CCC4", body.q4temptotal);
+  finalEquation.push(equation[8]);
 
   for(var i = 9; i<= 18; i++) {
     finalEquation.push(equation[i]);
